@@ -2,6 +2,7 @@
 #define ZCALC_token_h
 
 #include "iparse.h"
+#include <stddef.h>
 
 typedef enum _ZTokenType {
   ZTOKEN_TYPE_LPAR,
@@ -13,6 +14,7 @@ typedef enum _ZTokenType {
 typedef enum _ZTokenResult {
   ZTOKEN_OK = 0,
   ZTOKEN_NONMEMORY,
+  ZTOKEN_ALREADY_FREED,
 } ZTokenResult;
 
 typedef struct _ZToken {
@@ -21,11 +23,16 @@ typedef struct _ZToken {
     char op;
     ZNumber number;
   } tok;
+  size_t count;
 } ZToken;
 
 /**
  * A function that tokenize a string input
  */
-ZTokenResult ZToken_Tokenize(const char *input, ZToken ***tokens);
+ZTokenResult ZToken_Tokenize(const char *input, ZToken ***tokens, size_t *tok_counter);
+/**
+ * A function that free tokens
+ */
+ZTokenResult ZToken_Free(ZToken **tokens, size_t size);
 
 #endif

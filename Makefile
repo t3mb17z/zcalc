@@ -1,4 +1,4 @@
-CC = clang
+CC = clang-19
 CFLAGS = -Wall -Wextra -pedantic -std=c99 -Werror
 TARGET = zcalc
 RAW_LIBS = ncursesw m
@@ -17,11 +17,11 @@ OBJS = $(patsubst $(SRC_DIR)/%.c,$(BLD_DIR)/%.o, $(SRCS))
 
 # Compile all right now
 all: $(OBJS)
-	@$(CC) $(CFLAGS) $^ -o $(TARGET)
+	@$(CC) $(CFLAGS) $^ -g -o $(TARGET)
 
 $(BLD_DIR)/%.o: $(SRC_DIR)/%.c | $(BLD_DIR)
 	@echo "Compiling file: $< -> $@"
-	@$(CC) $(CFLAGS) $< -c -o $@
+	@$(CC) $(CFLAGS) $< -c -g -o $@
 
 $(BLD_DIR):
 	@echo "Creating '$@' directory"
