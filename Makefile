@@ -6,7 +6,7 @@ ARGS ?= ""
 
 BUILD ?= "debug"
 
-RAW_LIBS = ncursesw m
+RAW_LIBS = m
 LIBS = $(patsubst %,-l%, $(RAW_LIBS))
 
 # Define source directory
