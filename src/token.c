@@ -39,7 +39,7 @@ ZTokenResult ZToken_Tokenize(const char *input, ZToken **tokens, size_t *tok_cou
   ZToken temp_token = { 0 };
   bool success = false;
   for(size_t i = 0; i < size; i++) {
-    if(strchr("+-/*^", input[i])) {
+    if(strchr("+-/*^!", input[i])) {
       temp_token.tok.op.value = input[i];
       temp_token.type = ZTOKEN_TYPE_OP;
       temp_token.tok.op.precedence = Zprecedence(input[i]);

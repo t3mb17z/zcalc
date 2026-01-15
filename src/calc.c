@@ -29,6 +29,11 @@ ZTokenResult ZToken_to_rpn(ZToken *tokens, size_t size) {
     if(temp1->type == ZTOKEN_TYPE_ZNUMBER)
       ZQueue_enqueue(&output, temp1);
     else if(temp1->type == ZTOKEN_TYPE_OP) {
+      if(temp1->tok.op.value == '!') {
+        ZQueue_enqueue(&output, temp1);
+        continue;
+      }
+
       while(!ZList_empty(&ops)) {
         ZStack_peek(&ops, temp2);
         if(

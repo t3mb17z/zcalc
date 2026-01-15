@@ -64,9 +64,10 @@ int main(int argc, char *argv[]) {
   size_t count = 0;
   ZToken_Tokenize(expr, &tokens, &count);
   ZToken_to_rpn(tokens, count);
+
   result = Zeval_rpn(tokens, count);
 
-  printf("Result: %.4Lf", result);
+  printf("%Lf\n", result);
 
   return 0;
 }
