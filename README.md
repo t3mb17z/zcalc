@@ -7,8 +7,8 @@ for your terminal.
 
 ### Features
 * **Multiple operators** - `+`, `-`, `*`, `/`, `^` and factorial (`!`)
-* **Parenthesis** - Fully support nested expressions
-* **Performance** - Process over 90k tokens in under than 100ms
+* **Parenthesis** - Fully supports nested expressions
+* **Performance** - Process over 90k tokens in under 100ms
 * **Precision** - Floating-point precision up to ~14 decimal digits
 * **Extended numeric range** - Based on floating-point types
 
@@ -43,7 +43,7 @@ make BUILD=debug
 # With factorial and exponentiation
 ./zcalc "(8+5!)^(2+1/(8*9))"
 ```
-You can use even make to run
+You can also use make to run expressions
 ```sh
 # You can run directly
 make run ARGS='here goes your expression'

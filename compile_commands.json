@@ -1,59 +1,17 @@
 [
-  {
-    "arguments": [
-      "/usr/bin/clang-19",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "-std=c99",
-      "-Werror",
-      "-Iinclude",
-      "-c",
-      "-g",
-      "-o",
-      "build/iparse.o",
-      "src/iparse.c"
-    ],
-    "directory": "/home/csod4/repos/personal/zcalc",
-    "file": "/home/csod4/repos/personal/zcalc/src/iparse.c",
-    "output": "/home/csod4/repos/personal/zcalc/build/iparse.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/clang-19",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "-std=c99",
-      "-Werror",
-      "-Iinclude",
-      "-c",
-      "-g",
-      "-o",
-      "build/main.o",
-      "src/main.c"
-    ],
-    "directory": "/home/csod4/repos/personal/zcalc",
-    "file": "/home/csod4/repos/personal/zcalc/src/main.c",
-    "output": "/home/csod4/repos/personal/zcalc/build/main.o"
-  },
-  {
-    "arguments": [
-      "/usr/bin/clang-19",
-      "-Wall",
-      "-Wextra",
-      "-pedantic",
-      "-std=c99",
-      "-Werror",
-      "-Iinclude",
-      "-c",
-      "-g",
-      "-o",
-      "build/token.o",
-      "src/token.c"
-    ],
-    "directory": "/home/csod4/repos/personal/zcalc",
-    "file": "/home/csod4/repos/personal/zcalc/src/token.c",
-    "output": "/home/csod4/repos/personal/zcalc/build/token.o"
-  }
+    {
+        "command": "cc -c -Wall -Wextra -pedantic -std=c99 -Werror -Iinclude -g -o build/iparse.o src/iparse.c",
+        "directory": "/data/data/com.termux/files/home/repos/personal/zcalc",
+        "file": "/data/data/com.termux/files/home/repos/personal/zcalc/src/iparse.c"
+    },
+    {
+        "command": "cc -c -Wall -Wextra -pedantic -std=c99 -Werror -Iinclude -g -o build/main.o src/main.c",
+        "directory": "/data/data/com.termux/files/home/repos/personal/zcalc",
+        "file": "/data/data/com.termux/files/home/repos/personal/zcalc/src/main.c"
+    },
+    {
+        "command": "cc -c -Wall -Wextra -pedantic -std=c99 -Werror -Iinclude -g -o build/token.o src/token.c",
+        "directory": "/data/data/com.termux/files/home/repos/personal/zcalc",
+        "file": "/data/data/com.termux/files/home/repos/personal/zcalc/src/token.c"
+    }
 ]
