@@ -3,36 +3,49 @@
 
 #include "iparse.h"
 #include <stddef.h>
+#include <stdint.h>
 
 typedef enum _ZTokenType {
-  ZTOKEN_TYPE_LPAR,
+  ZTOKEN_TYPE_LPAR = 1,
   ZTOKEN_TYPE_RPAR,
   ZTOKEN_TYPE_OP,
-  ZTOKEN_TYPE_DIGIT
+  ZTOKEN_TYPE_ZNUMBER
 } ZTokenType;
+
+typedef enum _ZAssociativeType {
+  ZASSOCIATIVE_LEFT = 1,
+  ZASSOCIATIVE_RIGHT,
+  ZASSOCIATIVE_UNKNOWN,
+} ZAssociativeType;
 
 typedef enum _ZTokenResult {
   ZTOKEN_OK = 0,
   ZTOKEN_NONMEMORY,
   ZTOKEN_ALREADY_FREED,
+  ZTOKEN_NOBUFFER,
 } ZTokenResult;
 
+typedef struct _ZOperator {
+  ZAssociativeType assoc;
+  uint8_t precedence;
+  char value;
+} ZOperator;
+
 typedef struct _ZToken {
-  ZTokenType type;
   union {
-    char op;
+    ZOperator op;
     ZNumber number;
   } tok;
-  size_t count;
+  ZTokenType type;
 } ZToken;
 
 /**
  * A function that tokenize a string input
  */
-ZTokenResult ZToken_Tokenize(const char *input, ZToken ***tokens, size_t *tok_counter);
+ZTokenResult ZToken_Tokenize(const char *input, ZToken **tokens, size_t *tok_counter);
 /**
  * A function that free tokens
  */
-ZTokenResult ZToken_Free(ZToken **tokens, size_t size);
+ZTokenResult ZToken_Free(ZToken **tokens);
 
 #endif

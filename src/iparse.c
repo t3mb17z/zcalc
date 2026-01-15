@@ -22,7 +22,7 @@ ZNumber Zstr_to_number(const char *number) {
     result = 0.0; return result;
   }
 
-  bool was_dot = false;
+  bool last_was_dot = false;
   char dot_count = 0;
   if(*ptemp == '-') ptemp++;
   if(*ptemp == '.') {
@@ -32,20 +32,19 @@ ZNumber Zstr_to_number(const char *number) {
   while(*ptemp) {
 
     if(*ptemp == '.') {
-      ptemp++, was_dot = true;
+      ptemp++, last_was_dot = true;
       if(++dot_count > 1) {
         errno = ZNUMBER_MULTIPERIOD;
         result = 0.0; return result;
       }
+      continue;
     } else
-      was_dot = false;
+      last_was_dot = false;
 
     if(*ptemp == '-') {
       errno = ZNUMBER_DOUBLE_NEGATIVE;
       result = 0.0; return result;
     }
-
-    if(!*ptemp) break;
 
     if(Zis_digit(*ptemp)) {
       ptemp++;
@@ -55,10 +54,9 @@ ZNumber Zstr_to_number(const char *number) {
       result = 0.0; return result;
     }
 
-    ptemp++;
   }
 
-  if(was_dot) {
+  if(last_was_dot) {
     errno = ZNUMBER_UNTERMINATED;
     result = 0.0; return result;
   }
