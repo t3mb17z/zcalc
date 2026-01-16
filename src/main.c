@@ -20,11 +20,16 @@ int main(int argc, char *argv[]) {
 
   const char *expr = strdup(argv[1]);
 
+  ZTokenResult res = ZTOKEN_OK;
   ZToken *tokens;
   ZNumber result = 0;
   size_t count = 0;
-  ZToken_Tokenize(expr, &tokens, &count);
-  ZToken_to_rpn(tokens, count);
+  res = ZToken_Tokenize(expr, &tokens, &count);
+  if(res != ZTOKEN_OK)
+    return 0;
+  res = ZToken_to_rpn(tokens, count);
+  if(res != ZTOKEN_OK)
+    return 0;
 
   result = Zeval_rpn(tokens, count);
 

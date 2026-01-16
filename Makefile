@@ -6,8 +6,8 @@ ARGS ?= ""
 
 BUILD ?= "debug"
 
-RAW_LIBS = m
-LIBS = $(patsubst %,-l%, $(RAW_LIBS))
+LIBS_RAW = m
+LIBS = $(patsubst %,-l%, $(LIBS_RAW))
 
 # Define source directory
 SRC_DIR = src
@@ -20,7 +20,7 @@ CFLAGS += $(INC_DIRS)
 ifeq ($(BUILD),release)
 	CFLAGS += "-O3"
 else
-	CFLAGS += "-O0 -g -fsanitize=address -fno-omit-frame-pointer"
+	CFLAGS += -O0 -g -fsanitize=address -fno-omit-frame-pointer
 endif
 
 SRCS = $(shell find src -name "*.c")
@@ -36,7 +36,7 @@ $(BLD_DIR)/%.o: $(SRC_DIR)/%.c | $(BLD_DIR)
 		echo "Creating directory: $(@D)"; \
 		mkdir -p $(@D); \
 	fi
-	@$(CC) $(CFLAGS) $< -c -g -o $@
+	@$(CC) $(CFLAGS) $< -c -o $@
 
 $(BLD_DIR):
 	@echo "Creating '$@' directory"

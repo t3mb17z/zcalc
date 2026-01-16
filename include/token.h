@@ -23,6 +23,7 @@ typedef enum _ZTokenResult {
   ZTOKEN_NONMEMORY,
   ZTOKEN_ALREADY_FREED,
   ZTOKEN_NOBUFFER,
+  ZTOKEN_INVALID,
 } ZTokenResult;
 
 typedef struct _ZOperator {

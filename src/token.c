@@ -32,6 +32,8 @@ ZTokenResult ZToken_Tokenize(const char *input, ZToken **tokens, size_t *tok_cou
 
   size_t size = strlen(input);
   size_t tok_count = 0;
+  if(*input == '.')
+    return ZTOKEN_INVALID;
 
   *tokens = calloc(size, sizeof(ZToken));
   if(*tokens == NULL) return ZTOKEN_NONMEMORY;
@@ -54,12 +56,7 @@ ZTokenResult ZToken_Tokenize(const char *input, ZToken **tokens, size_t *tok_cou
       buffer[i - old_index] = '\0';
       temp = Zstr_to_number(buffer);
       if(temp == 0.0 && errno != ZNUMBER_OK) {
-
-        size_t idx = (i >= 2) ? i - 1 : i;
-        for(size_t j = 0; j < idx; j++)
-          free(tokens[j]), tokens[j] = NULL;
-
-        free(tokens);
+        free(*tokens);
         return ZTOKEN_NONMEMORY;
       }
       temp_token.tok.number = temp;
